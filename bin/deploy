@@ -1,0 +1,16 @@
+#! /bin/bash
+
+set -o errexit
+
+git branch -f gh-pages
+git checkout gh-pages
+
+sed -i '' -e 's/\/dist//g' .gitignore
+
+webpack --config webpack.production.config.js
+
+git add -A .
+git commit -m 'commit to deploy'
+
+git push origin gh-pages -f
+git checkout master
