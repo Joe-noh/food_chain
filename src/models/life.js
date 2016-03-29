@@ -2,7 +2,7 @@ class Life {
   constructor(lifeSpan, maxEnergy) {
     this.lifeSpan = lifeSpan;
     this.maxEnergy = maxEnergy;
-    this.currentEnergy = Math.ceil(maxEnergy / 2);
+    this.currentEnergy = maxEnergy;
     this.age = 0;
     this.dead = false;
   }

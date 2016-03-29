@@ -21,7 +21,7 @@ class FoodChain {
 
   iterate() {
     this.makeCarnivoresOld();
-    this.feedThemHerbivores();
+    this.eatHerbivores();
     this.herbivores = this.makeThemOld(this.herbivores);
     this.feedThemGrasses(this.herbivores);
   }
@@ -60,13 +60,19 @@ class FoodChain {
     });
   }
 
-  feedThemHerbivores() {
-    for (let i=0; i < this.carnivores.length; i++) {
-      if (this.herbivores.length === 0) { return; }
+  eatHerbivores() {
+    if (this.carnivores.length === 0) { return; }
 
-      if (this.carnivores[i].isHungry()) {
-        this.carnivores[i].absorbEnergy(this.herbivores.shift().currentEnergy);
-      }
+    let requiredEnergy = this.carnivores.reduce((sum, carnivore) => {
+      return sum + (carnivore.maxEnergy - carnivore.currentEnergy);
+    }, 0);
+    let numEaten = Math.min(5, Math.ceil(requiredEnergy / 25), this.herbivores.length);
+
+    this.herbivores = this.herbivores.slice(numEaten);
+
+    let energyPerCarnivore = (numEaten * 25) / this.carnivores.length;
+    for (let i=0; i < this.carnivores.length; i++) {
+      this.carnivores[i].absorbEnergy(energyPerCarnivore);
     }
   }
 
