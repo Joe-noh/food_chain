@@ -1,27 +1,27 @@
 class Life {
-  constructor(lifeSpan, stomachCapacity) {
+  constructor(lifeSpan, maxEnergy) {
     this.lifeSpan = lifeSpan;
-    this.stomachCapacity = stomachCapacity;
-    this.stomachContent = Math.ceil(stomachCapacity / 2);
+    this.maxEnergy = maxEnergy;
+    this.currentEnergy = Math.ceil(maxEnergy / 2);
     this.age = 0;
     this.dead = false;
   }
 
   becomeOld() {
     this.age++;
-    this.stomachContent = Math.max(this.stomachContent-1, 0);
+    this.currentEnergy = Math.max(this.currentEnergy-1, 0);
   }
 
   eat(meal) {
-    this.stomachContent = this.stomachCapacity;
+    this.currentEnergy = this.maxEnergy;
   }
 
   isHungry() {
-    return (this.stomachCapacity / 3) > this.stomachContent;
+    return (this.maxEnergy / 3) > this.currentEnergy;
   }
 
   isDead() {
-    return (this.dead) || (this.age >= this.lifeSpan) || (this.stomachContent === 0);
+    return (this.dead) || (this.age >= this.lifeSpan) || (this.currentEnergy === 0);
   }
 
   die() {
