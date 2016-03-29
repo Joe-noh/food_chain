@@ -1,14 +1,8 @@
-class Grass {
-  constructor() {
-    this.dead = false;
-  }
+import Life from './life';
 
-  isDead() {
-    return this.dead;
-  }
-
-  die() {
-    this.dead = true;
+class Grass extends Life {
+  constructor(lifeSpan, stomachCapacity) {
+    super(lifeSpan, stomachCapacity);
   }
 }
 
