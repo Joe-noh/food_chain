@@ -1,4 +1,4 @@
-class Animal {
+class Life {
   constructor(lifeSpan, stomachCapacity) {
     this.lifeSpan = lifeSpan;
     this.stomachCapacity = stomachCapacity;
@@ -29,4 +29,4 @@ class Animal {
   }
 }
 
-export default Animal;
+export default Life;

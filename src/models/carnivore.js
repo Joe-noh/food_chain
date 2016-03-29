@@ -1,6 +1,6 @@
-import Animal from './animal';
+import Life from './life';
 
-class Carnivore extends Animal {
+class Carnivore extends Life {
   constructor(lifeSpan, stomachCapacity) {
     super(lifeSpan, stomachCapacity);
   }
