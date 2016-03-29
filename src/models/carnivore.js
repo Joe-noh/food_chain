@@ -1,4 +1,4 @@
-class Carnivore {
+class Carnivore extends Animal {
 
 }
 
