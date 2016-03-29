@@ -1,8 +1,8 @@
 import Animal from './animal';
 
 class Herbivore extends Animal {
-  constructor(lifeSpan) {
-    super(lifeSpan);
+  constructor(lifeSpan, stomachCapacity) {
+    super(lifeSpan, stomachCapacity);
   }
 }
 
