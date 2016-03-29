@@ -12,8 +12,8 @@ class Life {
     this.currentEnergy = Math.max(this.currentEnergy-1, 0);
   }
 
-  eat(meal) {
-    this.currentEnergy = this.maxEnergy;
+  absorbEnergy(energy) {
+    this.currentEnergy = Math.min(this.currentEnergy + energy, this.maxEnergy);
   }
 
   isHungry() {
