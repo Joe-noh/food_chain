@@ -1,18 +1,18 @@
 import Carnivore from './carnivore';
-import Harbivore from './harbivore';
+import Herbivore from './herbivore';
 import Grass     from './grass';
 
 class FoodChain {
-  constructor(numCarnivores, numHarbivores, numGrasses) {
+  constructor(numCarnivores, numHerbivores, numGrasses) {
     this.carnivores = [];
-    this.harbivores = [];
+    this.herbivores = [];
     this.grasses = [];
 
     for (let i=0; i < numCarnivores; i++) {
       this.carnivores.push(new Carnivore(10, 20));
     }
-    for (let i=0; i < numHarbivores; i++) {
-      this.harbivores.push(new Harbivore(20, 25));
+    for (let i=0; i < numHerbivores; i++) {
+      this.herbivores.push(new Herbivore(20, 25));
     }
     for (let i=0; i < numGrasses; i++) {
       this.grasses.push(new Grass());
@@ -21,15 +21,15 @@ class FoodChain {
 
   iterate() {
     this.carnivores = this.makeThemOld(this.carnivores);
-    this.feedThemHarbivores();
-    this.harbivores = this.makeThemOld(this.harbivores);
-    this.feedThemGrasses(this.harbivores);
+    this.feedThemHerbivores();
+    this.herbivores = this.makeThemOld(this.herbivores);
+    this.feedThemGrasses(this.herbivores);
   }
 
   getNums() {
     return {
       carnivores: this.carnivores.length,
-      harbivores: this.harbivores.length,
+      herbivores: this.herbivores.length,
       grasses: this.grasses.length
     };
   }
@@ -41,22 +41,22 @@ class FoodChain {
     });
   }
 
-  feedThemHarbivores() {
+  feedThemHerbivores() {
     for (let i=0; i < this.carnivores.length; i++) {
-      if (this.harbivores.length === 0) { return; }
+      if (this.herbivores.length === 0) { return; }
 
       if (this.carnivores[i].isHungry()) {
-        this.carnivores[i].eat(this.harbivores.shift());
+        this.carnivores[i].eat(this.herbivores.shift());
       }
     }
   }
 
   feedThemGrasses() {
-    for (let i=0; i < this.harbivores.length; i++) {
+    for (let i=0; i < this.herbivores.length; i++) {
       if (this.grasses.length === 0) { return; }
 
-      if (this.harbivores[i].isHungry()) {
-        this.harbivores[i].eat(this.grasses.shift());
+      if (this.herbivores[i].isHungry()) {
+        this.herbivores[i].eat(this.grasses.shift());
       }
     }
   }
