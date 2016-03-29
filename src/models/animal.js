@@ -12,3 +12,5 @@ class Animal {
     return (this.age >= this.lifeSpan);
   }
 }
+
+export default Animal;
