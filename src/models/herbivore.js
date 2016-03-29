@@ -1,9 +1,9 @@
 import Life from './life';
 
-class Grass extends Life {
+class Herbivore extends Life {
   constructor(lifeSpan, maxEnergy) {
     super(lifeSpan, maxEnergy);
   }
 }
 
-export default Grass;
+export default Herbivore;
