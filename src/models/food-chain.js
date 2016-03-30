@@ -78,46 +78,26 @@ class FoodChain {
   }
 
   bearChilds() {
-    let numCarnivoreBabies = Math.ceil(this.carnivores.length * 0.1);
-    let numHerbivoreBabies = Math.ceil(this.herbivores.length * 0.3);
-    let numGrassBabies = Math.ceil(this.grasses.length * 0.5);
-
     let room = 100 - this.totalLives();
 
-    let numCarnivoreBabiesAlive = 0;
-    let numHerbivoreBabiesAlive = 0;
-    let numGrassBabiesAlive = 0;
+    let numCarnivoreBabies = Math.ceil(this.carnivores.length * 0.1);
+    let numHerbivoreBabies = Math.ceil(this.herbivores.length * 0.2);
+    let numGrassBabies = Math.ceil(this.grasses.length * 0.3 * (this.numDeadBody));
 
-    while (true) {
-      if (numGrassBabies > 0 && room > 0) {
-        room--;
-        numGrassBabies--;
-        numGrassBabiesAlive++;
-      }
-      if (numHerbivoreBabies > 0 && room > 0) {
-        room--;
-        numHerbivoreBabies--;
-        numHerbivoreBabiesAlive++;
-      }
-      if (numCarnivoreBabies > 0 && room > 0) {
-        room--;
-        numCarnivoreBabies--;
-        numCarnivoreBabiesAlive++;
-      }
+    let max = Math.max(numCarnivoreBabies, numHerbivoreBabies, numGrassBabies);
+    let normalized = [numCarnivoreBabies, numHerbivoreBabies, numGrassBabies].map((babies) => {
+      return Math.floor((room / 3) * babies / max);
+    });
 
-      let total = numCarnivoreBabies + numHerbivoreBabies + numGrassBabies;
-      if (room == 0 || total == 0) { break; }
-    }
-
-    for (let i=0; i < numCarnivoreBabiesAlive; i++) {
+    for (let i=0; i < normalized[0]; i++) {
       this.carnivores.push(new Carnivore(10, 5));
     }
 
-    for (let i=0; i < numHerbivoreBabiesAlive; i++) {
+    for (let i=0; i < normalized[1]; i++) {
       this.herbivores.push(new Herbivore(20, 5));
     }
 
-    for (let i=0; i < numGrassBabiesAlive; i++) {
+    for (let i=0; i < normalized[2]; i++) {
       this.grasses.push(new Grass(20, 20));
     }
 
