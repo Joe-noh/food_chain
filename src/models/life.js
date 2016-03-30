@@ -20,6 +20,10 @@ class Life {
     return (this.maxEnergy / 3) > this.currentEnergy;
   }
 
+  hunger() {
+    return this.maxEnergy - this.currentEnergy;
+  }
+
   isDead() {
     return (this.dead) || (this.age >= this.lifeSpan) || (this.currentEnergy === 0);
   }

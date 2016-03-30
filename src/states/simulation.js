@@ -11,8 +11,8 @@ let simulationState = {
   create() {
     console.log("simulationState created");
 
-    this.foodChain = new FoodChain(20, 40, 40);
-    this.timer = this.game.time.events.loop(1000, this.iterate, this);
+    this.foodChain = new FoodChain(10, 30, 60);
+    this.timer = this.game.time.events.loop(100, this.iterate, this);
   },
 
   update() {
